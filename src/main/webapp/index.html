@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/ATM1.js"></script>
+    <!-- <link rel="stylesheet" href="/ATM1.css"> -->
+</head>
+<body>
+    <button ><a href="/index2.html">Enter</a> </button>
+    <button ><a href="claclater/index.html">calcuul</a> </button>
+<p>ton solde est </p>
+<p>numero compte</p>
+    <table border="2px" width="800px" height="500px" >
+            <tbody>
+                <tr>
+                    <td><button onclick="withDrawMoney()">Withdraw</button></td>
+                    <td colspan="2" rowspan="2" id="bal" >
+                        <div>
+                         <p id="userBalance">Balance:</p>
+                        <p id="userDetails">Details:</p>
+                        </div>
+                    </td>
+                    <td><button onclick="depositMoney()" >Deposit</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="trans()">Transfer</button></td>
+                    <td><button onclick="cancel()">cancel</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="air()">Airtime</button></td>
+                    <td colspan="2" rowspan="2">
+                     =   <input placeholder="00,000:00" type="textarea" name="" id="userInput">
+                    </td>
+                    <td><button onclick="turnOn()">Check Balance</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button onclick="makeTransaction()"> Enter</button>
+                    </td>
+                    <td> <button id="end"><a href="/index2.html">End</a> </button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        
+        <style>
+            table{
+    margin: 20vh auto;
+background-image: linear-gradient(45deg,#e8e8e8 50%,rgba(179, 79, 79, 0) 25%,rgba(239,239,239,0) 0%,#efefef 100%,#0c4bd5),linear-gradient(45deg,#0c4bd5  100%,rgba(239,239,239,0) 25%,rgba(239,239,239,0) 75%,#efefef 100%,#0c4bd5);
+border: thick solid rgb(233, 8, 8);
+text-align: center;
+font-size: x-large;
+}
+button{
+    width: 15vh;
+    cursor: pointer; height: 10vh;
+    font-size: 0.8em;
+    font-weight: bolder;
+    background-color:  rgb(233, 8, 8);
+}
+input{
+    width: 50vh;
+    height: 10vh;
+    font-weight: bolder;
+    font-size: 2em;
+    text-align: center;
+    border: thick solid  rgb(233, 8, 8);
+}
+#bal{
+    border:blue 30px groove;
+  
+}
+#end a{
+  color: black;
+  text-decoration: none;
+}
+        </style>
+</body>
+</html>
