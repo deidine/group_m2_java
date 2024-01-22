@@ -74,13 +74,26 @@ public class crudCompteServlet extends HttpServlet {
             case "retrait":
                 effectuerRetrait(request, response);
                 break;
-            
+            case "chercher":
+            	chercher(request, response);
+            	break;
             default:
                 listComptes(request, response);
         }
     }
 
-    private void listComptes(HttpServletRequest request, HttpServletResponse response)
+    private void chercher(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+        String numCompte = request.getParameter("numCompte");
+    	 List<Compte> comptes = compteDao.chercher(numCompte);
+         request.setAttribute("comptes", comptes);
+
+         RequestDispatcher dispatcher = request.getRequestDispatcher("/compteCrud.jsp");
+         dispatcher.forward(request, response);
+	}
+
+	private void listComptes(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Compte> comptes = compteDao.getAll();
         request.setAttribute("comptes", comptes);

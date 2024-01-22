@@ -26,7 +26,11 @@ public class CompteDao implements CrudRepository<Compte> {
             return session.get(Compte.class, id);
         }
     }
-
+public List<Compte> chercher(String num){ 
+	 try (Session session = openSession()) {
+         return session.createQuery("FROM Compte where numCompte like '%"+num+"%'", Compte.class).list();
+     }
+}
     @Override
     public List<Compte> getAll() {
         try (Session session = openSession()) {

@@ -32,6 +32,11 @@ public class UserDao implements CrudRepository<User> {
         try (Session session = openSession()) {
             return session.createQuery("FROM User", User.class).list();
         }
+    }  
+    public List<User> chercher(String chercher) {
+        try (Session session = openSession()) {
+            return session.createQuery("FROM User where email like '%"+chercher+"%' or phone like '%"+chercher+"%' or firstName like '%"+chercher+"%' ", User.class).list();
+        }
     }
 
     @Override

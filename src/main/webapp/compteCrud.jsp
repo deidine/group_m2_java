@@ -245,9 +245,9 @@ nav button[type="submit"] {
 
 		<nav>
 			<i class='bx bx-menu'></i>
-			<form action="client" method="get">
+			<form action="${pageContext.request.contextPath}/crudCompte?action=chercher" method="post">
 				<div class="form-input">
-					<input type="searchEmail" placeholder="Search...">
+					<input type="search"  placeholder="serch Numéro du Compte" name="numCompte">
 					<button type="submit" class="search-btn">
 						<i class='bx bx-search'></i>
 					</button>

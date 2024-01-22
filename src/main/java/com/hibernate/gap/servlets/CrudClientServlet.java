@@ -63,11 +63,24 @@ public class CrudClientServlet extends HttpServlet {
 		case "search":
 			searchClient(request, response);
 			break;
+		  case "chercher":
+          	chercher(request, response);
+          	break;
 		default:
 			listClients(request, response);
 		}
 	}
 
+    private void chercher(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+        String chercher = request.getParameter("chercher");
+    	List<User> clients = userDao.chercher(chercher);
+		request.setAttribute("clients", clients);
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/crudClient.jsp");
+		dispatcher.forward(request, response);
+	}
 	private void listClients(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		List<User> clients = userDao.getAll();

@@ -232,9 +232,9 @@ nav button[type="submit"] {
 
 		<nav>
 			<i class='bx bx-menu'></i>
-			<form action="client" method="get">
+			<form action="${pageContext.request.contextPath}/clientCrud?action=chercher" method="post">
 				<div class="form-input">
-					<input type="searchEmail" placeholder="Search...">
+					<input type="searchEmail" placeholder="Search..." name="chercher">
 					<button type="submit" class="search-btn">
 						<i class='bx bx-search'></i>
 					</button>
