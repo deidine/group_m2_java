@@ -257,7 +257,7 @@ nav button[type="submit"] {
 				for="switch-mode" class="switch-mode"></label> <a href="#"
 				class="notification"> <i class='bx bxs-bell'></i> <span
 				class="num">8</span>
-			</a> <a href="#" class="profile"> <img src="images/icons/compte.png">
+			</a> <a href="profile.jsp" class="profile"> <img src="images/icons/compte.png">
 			</a>
 		</nav>
 		<main>
