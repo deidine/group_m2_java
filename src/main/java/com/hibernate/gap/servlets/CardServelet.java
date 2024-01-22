@@ -9,6 +9,8 @@ import java.io.IOException;
 
 import com.hibernate.gap.dao.CarteDao;
 import com.hibernate.gap.models.Carte;
+import com.hibernate.gap.models.Compte;
+import com.hibernate.gap.models.User;
 
 /**
  * Servlet implementation class CardServelet
@@ -36,11 +38,19 @@ public class CardServelet extends HttpServlet {
 		CarteDao crt = new CarteDao();
 		System.out.println("dwidin" + pin);
 		try {
-			Boolean carte = crt.getCarteByPin(pin);
+			Carte carte = crt.getCarteByPin(pin);
 
 			System.out.println("dwidin" + pin);
 			if (!carte.equals(null)) {
-				response.sendRedirect(request.getContextPath() + "/clientHome.jsp");
+				Compte cmp = crt.getCompteByCart(carte);
+				User user = crt.getUserByCompte(cmp);
+
+				request.setAttribute("carte", carte);
+				request.setAttribute("client", user);
+				request.setAttribute("compte", cmp);
+				System.out.println(cmp.getNumCompte() + "hihi" + user.getEmail());
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
+//				response.sendRedirect(request.getContextPath() + "/index.jsp");
 			} else {
 				response.sendRedirect(request.getContextPath() + "/carte.jsp");
 			}

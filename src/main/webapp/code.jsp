@@ -9,9 +9,49 @@
 
 <body onload="load()">
 
-    <script type="text/javascript" src="js/index.js"></script>
-    <button><a href="index.html">Enter</a> </button>
+    <script type="text/javascript" >
+    /**
+     * Created by chuandong on 15/11/27.
+     */
 
+    function load() {
+
+    	var btns = document.querySelectorAll('#calculator span'); 
+    	var inputScreen = document.querySelector('#screen');
+    	var inputForm=document.getElementById('input').value;
+    	var btnValue; 
+     	for (var i = 0; i < btns.length; i++) {
+
+    		btns[i].addEventListener('click', function() {
+
+    			btnValue = this.innerHTML; 
+    			
+    			switch (btnValue) {
+    				case 'Enter':
+    					console.log("login")
+    					
+    					break;
+    					case 'submit':
+    					break;
+    				case 'Sup':
+    					inputScreen.innerHTML = '';
+    			        document.getElementById('input').value=''
+    					break;
+
+    				default:
+    					if (/\d/.test(btnValue)) { // Check if it's a digit
+    			            inputForm += btnValue; // Only add to inputForm if digit
+    			        }
+    			        inputScreen.innerHTML += "*"; 
+    			        document.getElementById('input').value+=btnValue
+    				 //alert(btnValue+inputForm)
+    					break;
+    			}
+    		});
+    	}
+    }
+</script>
+  
     <div id="calculator">
         <!-- Screen and clear key -->
         <div class="top">
@@ -48,7 +88,8 @@
     <script type="text/javascript">
 
     function insert(){
-    	document.getElementById('input').value= document.querySelector('#screen').innerHTML;
+    	//alert(document.querySelector('#screen').innerHTML)
+    //	document.getElementById('input').value= document.querySelector('#screen').innerHTML;
      
     }
     </script>

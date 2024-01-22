@@ -122,6 +122,7 @@ button {
 }
 
 a {
+	text-decoration: none;
 	color: white;
 }
 

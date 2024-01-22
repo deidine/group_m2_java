@@ -1,7 +1,7 @@
 bal2 =document.getElementById('balance').value
 var disp ="Welcome, click on any to start"
 userInput=document.getElementById('userInput').value
-alert(bal2  )
+ 
 function turnOn(){
     userBalance.innerText = bal2
     userDetails.innerText = disp
