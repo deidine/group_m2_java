@@ -17,6 +17,7 @@ if (user == null || !"Admin".equals(user.getRole())) {
 <title>Liste des Clients</title>
 <link rel="stylesheet" type="text/css" href="styles/adminHome.css">
 <script src="js/main.js"></script>
+ <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -313,7 +314,8 @@ function myFunction() {
 											style='color: #e74c3c;'></i>
 									</a> <a
 										href="${pageContext.request.contextPath}/crudCompte?action=generateCard&compteId=${compte.id}">Générer
-											Carte</a>
+											Carte <i class='credit-card'
+											style='color: #e74c3c;'></i><box-icon name='credit-card'></box-icon></a>
 
 
 									</td>

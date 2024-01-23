@@ -14,6 +14,8 @@ if (user == null || !"Admin".equals(user.getRole())) {
 <html>
 
 <head>
+
+ <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 <title>Liste des Clients</title>
 <link rel="stylesheet" type="text/css" href="styles/adminHome.css">
 <script src="js/main.js"></script>
@@ -236,7 +238,7 @@ nav button[type="submit"] {
 				href="${pageContext.request.contextPath}/clientCrud?action=list">
 					<i class='bx bxs-user-circle'></i> <span class="text">Client</span>
 			</a></li>
-			<li class="active"><a
+			<li><a
 				href="${pageContext.request.contextPath}/crudCompte?action=list">
 					<i class='bx bxs-user'></i> <span class="text">Compte</span>
 			</a></li>
@@ -291,7 +293,7 @@ function myFunction() {
 	
 <form class="compte-form-container" action="${pageContext.request.contextPath}/crudCompte?action=deblockerSystem" method="post">
     <h3>Debloquer Le system apres  dépassé le nombre maximum d'essais de connexion autorisés, qui est de 5.</h3>
-    
+    <box-icon type='solid' name='badge-check'></box-icon>
    <input type="submit" value="deblockerSystem" name="action">
 </form>
 	</main>

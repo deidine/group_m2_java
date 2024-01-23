@@ -156,8 +156,7 @@ if (count <= 4) {
 <%
 } else {
 %>
-
-<!DOCTYPE html>
+ 
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
