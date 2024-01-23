@@ -47,6 +47,10 @@ if (user == null || !"Admin".equals(user.getRole())) {
 	/* Assurez-vous que le popup est au-dessus du contenu */
 }
 
+.dark-mode {
+  background-color: black;
+  color: white;
+}
 .user-form-container {
 	background-color: #ffffff;
 	border-radius: 5px;
@@ -228,7 +232,7 @@ nav button[type="submit"] {
 
 		</ul>
 		<ul class="side-menu">
-			<li><a href="#"> <i class='bx bxs-cog'></i> <span
+			<li  ><a href="setting.jsp"> <i class='bx bxs-cog'></i> <span
 					class="text">Settings</span>
 			</a></li>
 			<li><a href="${pageContext.request.contextPath}/logout"
@@ -253,7 +257,7 @@ nav button[type="submit"] {
 					</button>
 				</div>
 			</form>
-			<input type="checkbox" id="switch-mode" hidden> <label
+			<input type="checkbox"  onclick="myFunction()" id="switch-mode" hidden> <label
 				for="switch-mode" class="switch-mode"></label> <a href="#"
 				class="notification"> <i class='bx bxs-bell'></i> <span
 				class="num">8</span>
@@ -262,13 +266,15 @@ nav button[type="submit"] {
 		</nav>
 		<main>
 
+<script>
+function myFunction() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
+</script>
 
 
-			<button type="button">
-				<a
-					href="${pageContext.request.contextPath}/crudCompte?action=create&compteId=1">
-					crer un compte </a>
-			</button>
+			
 			<div class="table-data">
 				<div class="order">
 					<div class="head">

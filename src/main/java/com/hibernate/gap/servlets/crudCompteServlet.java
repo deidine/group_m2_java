@@ -31,6 +31,10 @@ public class crudCompteServlet extends HttpServlet {
         }
 
         switch (action) {
+        case "deblockerSystem":
+            debloquer(request, response);
+            break;
+            
             case "list":
                 listComptes(request, response);
                 break;
@@ -51,20 +55,29 @@ public class crudCompteServlet extends HttpServlet {
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    private void debloquer(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
+
+		   jakarta.servlet.http.HttpSession session = request.getSession();
+			 session.setAttribute("loginAttempts", 0);
+		     response.sendRedirect(request.getContextPath() + "/crudCompte?action=list");
+		     	
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
 
         switch (action) {
+        case "deblockerSystem":
+            debloquer(request, response);
+            break;
+            
             case "create":
                 createCompte(request, response);
                 break;
             case "update":
                 updateCompte(request, response);
-                break;
-            case "retraitFromCln":
-            	effectuerRetraitFromCln(request,response);
-            	break;
             case "delete":
                 deleteCompte(request, response);
                 break;
@@ -248,59 +261,6 @@ public class crudCompteServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/error.jsp");
         }
     }
-
-    private void effectuerRetraitFromCln(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // Récupérer les paramètres du formulaire
-        String compteId = request.getParameter("compteId");
-        double montant = Double.parseDouble(request.getParameter("montant"));
-
-        // Récupérer le compte depuis la base de données
-        Compte compte = compteDao.getById(Long.parseLong(compteId));
-
-        // Vérifier si le compte existe
-        if (compte != null) {
-            // Vérifier si le solde est suffisant pour effectuer le retrait
-            if (compte.getSolde() >= montant) {
-                // Effectuer le retrait
-                compte.setSolde(compte.getSolde() - montant);
-
-                // Mettre à jour le compte dans la base de données
-                compteDao.saveOrUpdate(compte);
-                String pin = request.getParameter("noCarte");
-        		CarteDao crt = new CarteDao();
-        		System.out.println("dwidin" + pin);
-        		try {
-        			Carte carte = crt.getCarteByPin(pin);
-
-        			System.out.println("dwidin" + pin);
-        			if (!carte.equals(null)) {
-        				Compte cmp = crt.getCompteByCart(carte);
-        				User user = crt.getUserByCompte(cmp);
-
-        				request.setAttribute("carte", carte);
-        				request.setAttribute("client", user);
-        				request.setAttribute("compte", cmp);
-        				System.out.println(cmp.getNumCompte() + "hihi" + user.getEmail());
-        				request.getRequestDispatcher("/index.jsp").forward(request, response);
-        				
-        			}
-        			
-        		} catch (RuntimeException e) {
-        			// Gérer les erreurs d'authentification
-        			response.sendRedirect(request.getContextPath() + "/error.jsp");
-        			throw new RuntimeException(e.toString());
-        		}
-            } else {
-                // Gérer le cas où le solde est insuffisant
-                response.sendRedirect(request.getContextPath() + "/error.jsp");
-            }
-        } else {
-            // Gérer le cas où le compte n'est pas trouvé
-            response.sendRedirect(request.getContextPath() + "/error.jsp");
-        }
-    }
-
 
 
 private void generateCard(HttpServletRequest request, HttpServletResponse response)

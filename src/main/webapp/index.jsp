@@ -101,7 +101,7 @@ if (request.getAttribute("carte") != null) {
 				<td><button class="clssbutton" onclick="cancel()">Anuller</button></td>
 			</tr>
 			<tr>
-				<form action="${pageContext.request.contextPath}/crudCompte"
+				<form action="${pageContext.request.contextPath}/cardServelet"
 					onsubmit="return verify()" method="post">
 				<td></td>
 				<td colspan="2" rowspan="2">= <input class="clssinput"
@@ -218,7 +218,7 @@ if (request.getAttribute("carte") != null) {
 		function verify() {
 			var inp = document.getElementById('userInput').value
 			var solde = document.getElementById('solde').value
-		 alert(isBtnClicked)
+ 
 			if (inp == "" || inp > solde || inp ==0 ) {
 				alert("entrer le montent correct ou le montent peux pas etre vide ")
 				 cancel()

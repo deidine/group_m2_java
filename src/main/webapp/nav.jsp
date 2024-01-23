@@ -2,16 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="jakarta.servlet.*, jakarta.servlet.http.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="com.hibernate.gap.models.User"%>
-<%
-User user = (User) session.getAttribute("user");
-if (user == null || !"Admin".equals(user.getRole())) {
-	request.setAttribute("errorMessage", "You're not admin, so fuck off !");
-	response.sendRedirect("login.jsp");
-}
-%>
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
+
 <head>
 <title>Liste des Clients</title>
 <link rel="stylesheet" type="text/css" href="styles/adminHome.css">
@@ -42,12 +35,10 @@ if (user == null || !"Admin".equals(user.getRole())) {
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	padding: 20px;
 	text-align: center;
-	z-index: 1000; /* Assurez-vous que le popup est au-dessus du contenu */
+	z-index: 1000;
+	/* Assurez-vous que le popup est au-dessus du contenu */
 }
-.dark-mode {
-  background-color: black;
-  color: white;
-}
+
 .user-form-container {
 	background-color: #ffffff;
 	border-radius: 5px;
@@ -106,42 +97,51 @@ body {
 	border: 1px solid;
 	color: var(- -blue);
 	text-align: center;
-	text-decoration: none; /* Remove link underline */
+	text-decoration: none;
+	/* Remove link underline */
 	display: inline-block;
 	font-size: 16px;
 	margin-left: 800px;
 }
 
 button {
-	background-color: var(- -blue); /* Green */
+	background-color: var(- -blue);
+	/* Green */
 	color: var(- -blue);
 	color: black;
 	padding: 5px 10px;
 	text-align: center;
-	text-decoration: none; /* Remove link underline */
+	text-decoration: none;
+	/* Remove link underline */
 	display: inline-block;
 	font-size: 16px;
 	margin-left: 50px;
 }
 
 a {
-	text-decoration: none;
 	color: white;
+	
+	text-decoration: none;
 }
 
 .content-container {
-	flex-grow: 1; /* Occupe l'espace restant */
+	flex-grow: 1;
+	/* Occupe l'espace restant */
 	...
 }
+
 /* Barre de navigation */
 .navbar {
 	height: 100vh;
-	width: 180px; /* Réduction de la largeur */
-	background-color: #181D50; /* Couleur principale */
+	width: 180px;
+	/* Réduction de la largeur */
+	background-color: #181D50;
+	/* Couleur principale */
 	padding-top: 20px;
 	display: flex;
 	flex-direction: column;
-	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Ombre sur le côté */
+	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+	/* Ombre sur le côté */
 }
 
 .user-info {
@@ -161,7 +161,8 @@ a {
 	text-decoration: none;
 	padding: 40px;
 	text-align: center;
-	transition: background-color 0.3s ease; /* Effet de transition */
+	transition: background-color 0.3s ease;
+	/* Effet de transition */
 }
 
 .nav-links a:hover {
@@ -196,6 +197,7 @@ nav button[type="submit"] {
 }
 </style>
 </head>
+
 <body>
 
 
@@ -204,11 +206,11 @@ nav button[type="submit"] {
 			class="text">Welcome, Admin</span>
 		</a>
 		<ul class="side-menu top">
-			<li class="active"><a
+			<li><a
 				href="${pageContext.request.contextPath}/clientCrud?action=list">
 					<i class='bx bxs-user-circle'></i> <span class="text">Client</span>
 			</a></li>
-			<li><a
+			<li class="active"><a
 				href="${pageContext.request.contextPath}/crudCompte?action=list">
 					<i class='bx bxs-user'></i> <span class="text">Compte</span>
 			</a></li>
@@ -218,7 +220,7 @@ nav button[type="submit"] {
 
 		</ul>
 		<ul class="side-menu">
-		<li ><a href="setting.jsp"> <i class='bx bxs-cog'></i> <span
+			<li><a href="#"> <i class='bx bxs-cog'></i> <span
 					class="text">Settings</span>
 			</a></li>
 			<li><a href="${pageContext.request.contextPath}/logout"
@@ -228,99 +230,8 @@ nav button[type="submit"] {
 		</ul>
 	</section>
 	<!-- SIDEBAR -->
-
-	<!-- CONTENT -->
-	<section id="content">
-		<!-- NAVBAR -->
-
-<script>
-function myFunction() {
-   var element = document.body;
-   element.classList.toggle("dark-mode");
-}
-</script>
-		<nav>
-			<i class='bx bx-menu'></i>
-			<form action="${pageContext.request.contextPath}/clientCrud?action=chercher" method="post">
-				<div class="form-input">
-					<input type="searchEmail" placeholder="Search..." name="chercher">
-					<button type="submit" class="search-btn">
-						<i class='bx bx-search'></i>
-					</button>
-				</div>
-			</form>
-			<input type="checkbox" onclick="myFunction()" id="switch-mode" hidden> <label
-				for="switch-mode" class="switch-mode"></label> <a href="#"
-				class="notification"> <i class='bx bxs-bell'></i> <span
-				class="num">8</span>
-			</a> <a href="profile.jsp" class="profile"> <img src="images/icons/compte.png">
-			</a>
-		</nav>
-		<main>
-
-
-
-			<button type="button">
-				<a href="createUser.jsp"> Create User </a>
-			</button>
-			<div class="table-data">
-				<div class="order">
-					<div class="head">
-						<h3>Liste des Clients</h3>
-						<i class='bx bx-filter'></i>
-					</div>
-					<table>
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>Prénom</th>
-								<th>Nom</th>
-								<th>Email</th>
-								<th>Téléphone</th>
-								<th>Actions</th>
-
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="client" items="${clients}">
-
-								<tr>
-									<td>${client.id}</td>
-
-									<td>${client.firstName}</td>
-									<td>${client.lastName}</td>
-									<td>${client.email}</td>
-									<td>${client.phone}</td>
-									<td>
-										<!-- Ajoutez ici des liens ou des boutons pour les actions -->
-										<a
-										href="${pageContext.request.contextPath}/clientCrud?action=edit&clientId=${client.id}"
-										title="Modifier"> <i class='bx bx-edit'
-											style='color: #3498db;'></i>
-									</a> <a
-										href="${pageContext.request.contextPath}/clientCrud?action=delete&clientId=${client.id}"
-										title="Suprimer"> <i class='bx bx-trash'
-											style='color: #e74c3c;'></i>
-									</a> <a
-										href="${pageContext.request.contextPath}/clientCrud?action=details&clientId=${client.id}"
-										title="Associer compte"> <i class='bx bx-user'
-											style='color: #2ecc71;'></i>
-									</a>
-
-									</td>
-								</tr>
-							</c:forEach>
-
-
-
-						</tbody>
-					</table>
-				</div>
-			</div>
-
-		</main>
-	</section>
-
-	<script src="js/script.js"></script>
-</body>
-</html>
+<c:if test="${pageContext.request.contextPath}/crudCompte?action=list">
+ss
+</c:if>
+			${pageContext.request.contextPath}
+ 

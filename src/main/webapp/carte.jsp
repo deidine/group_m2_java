@@ -1,3 +1,39 @@
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@page import="com.hibernate.gap.models.User"%>
+<%@page import="com.hibernate.gap.models.Carte"%>
+<%@page import="com.hibernate.gap.models.Compte"%>
+<%@page import=" java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%
+
+String timeStamp = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
+
+User usr = null;
+if (request.getAttribute("client") != null) {
+	usr = (User) request.getAttribute("client");
+}
+Compte cmpt = null;
+if (request.getAttribute("compte") != null) {
+	cmpt = (Compte) request.getAttribute("compte");
+}
+
+Carte crt = null;
+if (request.getAttribute("carte") != null) {
+	crt = (Carte) request.getAttribute("carte");
+}
+String mnt = null;
+if (request.getAttribute("montant") != null) {
+	mnt = (String) request.getAttribute("montant");
+}
+
+double sld =0 ;
+if (request.getAttribute("solde") != null) {
+sld =  (double) request.getAttribute("solde");
+}
+%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,8 +55,8 @@
         rgb(237, 120, 3) 0%,
         rgb(183, 60, 3) 100%
       );
-      width: 300px;
-      height: 180px;
+      width: 600px;
+      height: 300px;
       margin-top: 100px;
       border-radius: 15px;
       box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
@@ -30,7 +66,7 @@
     .card .numberarea {
         position: absolute;
         top:100px;
-        left:20px;
+        right:100px; 
         font-size: 20px;
         font-family: 'Courier New', Courier, monospace;
         word-spacing: 1px;
@@ -40,24 +76,24 @@
         position:absolute;
         font-size: 15px;
         font-family: 'Courier New', Courier, monospace;
-        left: 20px;
-        top:130px
+        left: 80px;
+        top:100px
     }
 
     .card .expirydatearea {
         font-family: 'Courier New', Courier, monospace;
         position: absolute;
         top:130px;
-        left:160px
+        left:260px
 
     }
 
     .card .validthru {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        position: absolute;
-        top:135px;
-        left:120px;
-        font-size: 7px;
+    
+        top:235px;
+        right:420px;
+        font-size: 27px;
         color:white;
     }
 
@@ -73,40 +109,54 @@
 
     .card .simslot {
         position: absolute;
-        top:50px;
+        top:20px;
         right:50px;
     }
   </style>
 
   <!-- Inline CSS -->
-  <body style="background-color: rgb(249, 249, 249)">
+  <body onload="imprimer(); " style="background-color: rgb(249, 249, 249)">
+
     <center>
+    
+					 
       <div class="card">
 
         <div class="numberarea">
-            1234 5667 5326 7664
+           CN: <%=crt.getNumeroCarte()%>
         </div>
 
         <div class="namearea">
-            VIVEK V
+         Nom: <%=usr.getFirstName() + "/ <br>" + usr.getLastName()%>
+             
         </div>
-
         <div class="expirydatearea">
-            12/26
+             DE: <%=crt.getDateExpiration()%>
+             <%="<br><br><br><br><br>Date Du Operation: "+timeStamp %>
         </div>
 
         <div class="validthru">
-            valid upto
+          <p> 
+            Merci <%="<br> montant :"+mnt %><%=" /\\  Solde : "+sld %></p>
         </div>
 
-        <div class="simslot">
-            <img src="simslot.png" width="60px" alt="">
-        </div>
 
-        <div class="banklogo">
-            <img src="icici.png" class="logodesign" alt="" srcset="">
-        </div>
+        
+
+					 
       </div>
     </center>
+    <script>
+    function imprimer(){
+    	 window.print(); 
+    	    window.onafterprint = function(event) {
+    			 
+    			 document.location.href='code.jsp' 	 
+    		 };
+    	    	    	
+    	 }
+
+    
+    </script>
   </body>
 </html>

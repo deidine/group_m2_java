@@ -31,21 +31,31 @@ public class CarteDao implements CrudRepository<Carte> {
 			return session.get(Carte.class, id);
 		}
 	}
-
+public boolean verfiPin(String pin) {
+	Carte crt=getCarteByPin(pin);
+	if (crt == null) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+	
 	public Carte getCarteByPin(String pin) {
+		Carte carte =null;
 		try (Session session = sessionFactory.openSession()) {
 			// Recherche de la carte par numero
-			Carte carte = session.createQuery("FROM Carte c where c.pin = :pin", Carte.class)
+			carte= session.createQuery("FROM Carte c where c.pin = :pin", Carte.class)
 
 					.setParameter("pin", pin).uniqueResult();
 
-			if (!carte.equals(null)) {
-				return carte;
-			} else {
-				return null;
-			}
+			
 
-		}
+		}catch(Exception ec) {
+			
+		} 
+			return carte;
+		 
 	}
 
 	public Compte getCompteByCart(Carte crt) {
