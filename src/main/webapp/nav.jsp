@@ -196,14 +196,21 @@ nav button[type="submit"] {
 		<ul   class="side-menu top">
 			<li ><a
 				href="${pageContext.request.contextPath}/clientCrud?action=list">
-					<i class='bx bxs-user-circle'></i> <span class="text">Client</span>
+			<box-icon type='solid' name='user-circle'></box-icon>	 <span class="text">Client</span>
 			</a></li>
 			<li><a
 				href="${pageContext.request.contextPath}/crudCompte?action=list">
-					<i class='bx bxs-user'></i> <span class="text">Compte</span>
+	<box-icon type='solid' name='chalkboard'></box-icon>Compte</span>
+					
 			</a></li>
-	
-
+	<li><a
+				href="${pageContext.request.contextPath}/transactionServelet?action=list">
+				<box-icon type='solid' name='user-detail'></box-icon> <span class="text">client transaction</span>
+			</a></li>
+<li><a
+				href="${pageContext.request.contextPath}/machineServelet?action=list">
+			 <box-icon name='money-withdraw'></box-icon><span class="text">machine logs </span>
+			</a></li>
 		</ul>
 		<ul class="side-menu">
 			<li><a href="setting.jsp"> <i class='bx bxs-cog'></i> <span

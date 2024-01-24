@@ -17,11 +17,12 @@
 		<property name="hibernate.show_sql">true</property>
 		<property name="hbm2ddl.auto">update</property>
 		<property name="jta.UserTransaction">java:comp/UserTransaction</property>
-		
+
 		<property name="cache.use_query_cache">false</property>
 		<mapping class="om.hibernate.gap.models.User" />
 		<mapping class="com.hibernate.gap.models.Compte" />
 		<mapping class="com.hibernate.gap.models.Carte" />
-
+		<mapping class="com.hibernate.gap.models.Transaction" />
+		<mapping class="com.hibernate.gap.models.Machine" />
 	</session-factory>
 </hibernate-configuration>
