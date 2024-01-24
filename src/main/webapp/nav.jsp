@@ -1,12 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="jakarta.servlet.*, jakarta.servlet.http.*"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
- <!DOCTYPE html>
-<html>
 
-<head>
-<title>Liste des Clients</title>
 <link rel="stylesheet" type="text/css" href="styles/adminHome.css">
 <script src="js/main.js"></script>
 
@@ -15,28 +7,35 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-<!-- Ajoutez ici vos liens vers les fichiers CSS ou tout autre Ã©lÃ©ment de style -->
+<!-- Ajoutez ici vos liens vers les fichiers CSS ou tout autre élément de style -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 <!-- or -->
 <link rel="stylesheet"
 	href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+	
+<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+	
 <style type="text/css">
 .popup {
 	display: none;
 	position: fixed;
 	top: 50%;
-	/* Ajustez cette valeur en fonction de votre mise en page spÃ©cifique */
+	/* Ajustez cette valeur en fonction de votre mise en page spécifique */
 	left: 50%;
-	/* Ajustez cette valeur en fonction de votre mise en page spÃ©cifique */
+	/* Ajustez cette valeur en fonction de votre mise en page spécifique */
 	transform: translate(-50%, -50%);
 	background-color: #ffffff;
 	border-radius: 5px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	padding: 20px;
 	text-align: center;
-	z-index: 1000;
-	/* Assurez-vous que le popup est au-dessus du contenu */
+	z-index: 1000; /* Assurez-vous que le popup est au-dessus du contenu */
+}
+
+.dark-mode {
+	background-color: black;
+	color: white;
 }
 
 .user-form-container {
@@ -97,51 +96,42 @@ body {
 	border: 1px solid;
 	color: var(- -blue);
 	text-align: center;
-	text-decoration: none;
-	/* Remove link underline */
+	text-decoration: none; /* Remove link underline */
 	display: inline-block;
 	font-size: 16px;
 	margin-left: 800px;
 }
 
 button {
-	background-color: var(- -blue);
-	/* Green */
+	background-color: var(- -blue); /* Green */
 	color: var(- -blue);
 	color: black;
 	padding: 5px 10px;
 	text-align: center;
-	text-decoration: none;
-	/* Remove link underline */
+	text-decoration: none; /* Remove link underline */
 	display: inline-block;
 	font-size: 16px;
 	margin-left: 50px;
 }
 
 a {
-	color: white;
-	
 	text-decoration: none;
+	color: white;
 }
 
 .content-container {
-	flex-grow: 1;
-	/* Occupe l'espace restant */
+	flex-grow: 1; /* Occupe l'espace restant */
 	...
 }
-
 /* Barre de navigation */
 .navbar {
 	height: 100vh;
-	width: 180px;
-	/* RÃ©duction de la largeur */
-	background-color: #181D50;
-	/* Couleur principale */
+	width: 180px; /* Réduction de la largeur */
+	background-color: #181D50; /* Couleur principale */
 	padding-top: 20px;
 	display: flex;
 	flex-direction: column;
-	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-	/* Ombre sur le cÃ´tÃ© */
+	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Ombre sur le côté */
 }
 
 .user-info {
@@ -161,8 +151,7 @@ a {
 	text-decoration: none;
 	padding: 40px;
 	text-align: center;
-	transition: background-color 0.3s ease;
-	/* Effet de transition */
+	transition: background-color 0.3s ease; /* Effet de transition */
 }
 
 .nav-links a:hover {
@@ -197,7 +186,6 @@ nav button[type="submit"] {
 }
 </style>
 </head>
-
 <body>
 
 
@@ -205,33 +193,70 @@ nav button[type="submit"] {
 		<a href="#" class="brand"> <i class='bx bxs-smile'></i> <span
 			class="text">Welcome, Admin</span>
 		</a>
-		<ul class="side-menu top">
-			<li><a
+		<ul   class="side-menu top">
+			<li ><a
 				href="${pageContext.request.contextPath}/clientCrud?action=list">
 					<i class='bx bxs-user-circle'></i> <span class="text">Client</span>
 			</a></li>
-			<li class="active"><a
+			<li><a
 				href="${pageContext.request.contextPath}/crudCompte?action=list">
 					<i class='bx bxs-user'></i> <span class="text">Compte</span>
 			</a></li>
-			<li><a href="#"> <i class='bx bx-info-circle'></i> <span
-					class="text">Ã€ Propos</span>
-			</a></li>
+	
 
 		</ul>
 		<ul class="side-menu">
-			<li><a href="#"> <i class='bx bxs-cog'></i> <span
+			<li><a href="setting.jsp"> <i class='bx bxs-cog'></i> <span
 					class="text">Settings</span>
+			</a></li>	
+				<li><a href="about.jsp"> <i class='bx bx-info-circle'></i> <span
+					class="text">À Propos</span>
 			</a></li>
-			<li><a href="${pageContext.request.contextPath}/logout"
-				class="logout"> <i class='bx bxs-log-out-circle'></i> <span
+			<li><a href="${pageContext.request.contextPath}/logout"> <i class='bx bxs-log-out-circle'></i> <span
 					class="text">Logout</span>
 			</a></li>
 		</ul>
 	</section>
 	<!-- SIDEBAR -->
-<c:if test="${pageContext.request.contextPath}/crudCompte?action=list">
-ss
-</c:if>
-			${pageContext.request.contextPath}
- 
+
+
+		<script>
+		const element = document.body;
+		const isDarkModeEnabled = localStorage.getItem('darkModeEnabled') === 'true';
+		
+			function myFunction() {
+				
+				element.classList.toggle("dark-mode");
+				 localStorage.setItem('darkModeEnabled', element.classList.contains('dark-mode'));
+				 if ( !element.classList.contains('dark-mode')) {
+					 localStorage.setItem('darkModeEnabled', false);
+					}
+			}
+			
+			 
+			// Check for stored preference on page load
+			if (isDarkModeEnabled) {
+			  element.classList.add('dark-mode');
+			}
+			
+			const listItems = document.querySelectorAll('ul li');
+
+			function handleListItemClick(index) {
+			  localStorage.setItem('activeListItemIndex', index); // Store index in local storage
+			}
+
+			function applyActiveClassFromStorage() {
+			  const activeIndex = localStorage.getItem('activeListItemIndex');
+			  if (activeIndex !== null) {
+			    listItems[activeIndex].classList.add('active');
+			  }
+			}
+
+			listItems.forEach((item, index) => {
+			  item.addEventListener('click', () => {
+			    handleListItemClick(index);
+			  });
+			});
+
+			applyActiveClassFromStorage(); // Apply active class on page load
+		</script>
