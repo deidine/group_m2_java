@@ -276,10 +276,13 @@ private void generateCard(HttpServletRequest request, HttpServletResponse respon
         // Générer la carte associée au compte
         Carte carte = carteDao.generateCarte(compte);
 
-        
+		request.setAttribute("carte", carte);
+		request.setAttribute("client", compte.getUser());
+		request.setAttribute("compte", compte); 
+		request.getRequestDispatcher("/carte.jsp").forward(request, response);
 
         // Rediriger vers la liste des comptes après la génération de la carte
-        response.sendRedirect(request.getContextPath() + "/crudCompte?action=list");
+//        response.sendRedirect(request.getContextPath() + "/crudCompte?action=list");
     	
     }else {
     	System.out.println("Ce compte a deja une carte associee !" + existe.getId());

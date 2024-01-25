@@ -23,15 +23,8 @@ Carte crt = null;
 if (request.getAttribute("carte") != null) {
 	crt = (Carte) request.getAttribute("carte");
 }
-String mnt = null;
-if (request.getAttribute("montant") != null) {
-	mnt = (String) request.getAttribute("montant");
-}
 
-double sld =0 ;
-if (request.getAttribute("solde") != null) {
-sld =  (double) request.getAttribute("solde");
-}
+
 %>
 
 <!DOCTYPE html>
@@ -131,13 +124,13 @@ sld =  (double) request.getAttribute("solde");
              
         </div>
         <div class="expirydatearea">
-             DE: <%=crt.getDateExpiration()%>
-             <%="<br><br><br><br><br>Date Du Operation: "+timeStamp %>
+        
+             <%="<br><br>DE: "+crt.getDateExpiration()+"<br><br><br> Pin:"+ crt.getPin() %>
         </div>
 
         <div class="validthru">
           <p> 
-            Merci <%="<br> montant :"+mnt %><%=" /\\  Solde : "+sld %></p>
+          Banque</p>
         </div>
 
 
@@ -151,7 +144,7 @@ sld =  (double) request.getAttribute("solde");
     	 window.print(); 
     	    window.onafterprint = function(event) {
     			 
-    			 document.location.href='code.jsp' 	 
+    			 document.location.href='adminHome.jsp' 	 
     		 };
     	    	    	
     	 }

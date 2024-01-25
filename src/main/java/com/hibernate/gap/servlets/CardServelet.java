@@ -33,7 +33,14 @@ public class CardServelet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getOutputStream().println("Hello World");
+		String action = request.getParameter("action");
+ 
+		if(action!=null) {
+			validatePin(request, response);
+		}else {
+			request.getRequestDispatcher("/code.jsp").forward(request, response);
+
+		}
 	}
 
 	/**
@@ -42,6 +49,7 @@ public class CardServelet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		String action = request.getParameter("action");
 		System.out.println("acyi" + action);
 		switch (action) {
@@ -143,7 +151,8 @@ public class CardServelet extends HttpServlet {
 
 						request.setAttribute("compte", compte);
 						transactionServelet.doPost(request, response);
-						request.getRequestDispatcher("/carte.jsp").forward(request, response);
+//						request.getRequestDispatcher("/carte.jsp").forward(request, response);
+						request.getRequestDispatcher("/tiket.jsp").forward(request, response);
 
 					}
 

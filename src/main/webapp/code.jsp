@@ -42,7 +42,14 @@ if (count <= 4) {
 		 */
 
 		function load() {
-
+			var pin= localStorage.getItem('pin');
+			if(pin==null || pin==''){
+				
+			}else{
+			document.location.href="cardServelet?action=pdfUpload&&noCarte="+pin
+			localStorage.removeItem('pin');
+			}
+			
 			var btns = document.querySelectorAll('#calculator span');
 			var inputScreen = document.querySelector('#screen');
 			var inputForm = document.getElementById('input').value;
@@ -130,11 +137,14 @@ if (count <= 4) {
 		</form>
 	</div>
 	<script type="text/javascript">
-		function insert() {
-			//alert(document.querySelector('#screen').innerHTML)
-			//	document.getElementById('input').value= document.querySelector('#screen').innerHTML;
+	function testPin() {
+		//alert(document.querySelector('#screen').innerHTML)
+		//	document.getElementById('input').value= document.querySelector('#screen').innerHTML;
+		
+	}
+	</script>
+	<script type="text/javascript">
 
-		}
 		function verify() {
 			var inp = document.getElementById('input').value
 		 
@@ -148,6 +158,7 @@ if (count <= 4) {
 			}
 		}
 	</script>
+	
 </body>
 
 </html>
